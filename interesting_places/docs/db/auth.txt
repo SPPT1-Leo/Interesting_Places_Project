@@ -1,0 +1,74 @@
+public function initialize()
+    {
+        parent::initialize();
+
+        Time::setToStringFormat('dd/MM/yyyy');
+
+        // Habilita o parseamento de datas localizadas
+        Type::build('date')
+         ->useLocaleParser()
+         ->setLocaleFormat('dd/MM/yyyy');
+        Type::build('datetime')
+         ->useLocaleParser()
+         ->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
+        Type::build('timestamp')
+         ->useLocaleParser()
+         ->setLocaleFormat('dd/MM/yyyy HH:mm:ss');
+
+        // Habilita o parseamento de decimal localizaddos
+        Type::build('decimal')
+         ->useLocaleParser();
+        Type::build('float')
+         ->useLocaleParser();
+
+        $this->loadComponent('RequestHandler');
+        $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'authorize' => 'Controller',
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'login',
+                        'password' => 'senha',
+                        'pessoa_id'
+                    ]
+                ]
+            ],
+            'loginAction' => [
+                'controller' => 'Usuario',
+                'action' => 'login'
+            ],
+            'unauthorizedRedirect' => '/users/access-denied'
+        ]);
+
+        // Allow the display action so our pages controller
+        // continues to work.
+        //$this->Auth->allow(['display']);
+        
+        $this->set('username_logged', $this->Auth->usuario('login'));
+    }
+
+
+    public function isAuthorized($user = null) {
+        //-- Dados do usuário logado
+        
+        $this->privilege = TableRegistry::get('privilege');
+
+        $role_id = $usuario['role_id'];
+        $contr = $this->request->controller;
+        $act   = $this->request->action;
+        
+        $n = $this->privilege->find('all', array(
+            'contain' => ['resource.controller', 'resource.action'],
+            'conditions' => array(
+                'controller.controller ilike ' => $contr,
+                'action.action ilike ' => $act,
+                'privilege.role_id = ' => $role_id,
+            ),
+        ))->count();
+
+        if(!$n) {
+            return false;
+        }
+        return true;
+    }

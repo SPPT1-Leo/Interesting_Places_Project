@@ -1,0 +1,715 @@
+﻿DELETE FROM acl_privileges;
+DELETE FROM acl_resources;
+DELETE FROM acl_actions;
+DELETE FROM acl_controllers;
+--
+-- acl inserts
+--
+
+--
+-- Roles
+---
+INSERT INTO acl_roles (id, role, parent) VALUES (1, 'administrador', NULL);
+INSERT INTO acl_roles (id, role, parent) VALUES (2, 'usuario', NULL);
+
+--
+-- Controllers
+--
+INSERT INTO acl_controllers(id, controller) VALUES ( 1, 'Pages');
+INSERT INTO acl_controllers(id, controller) VALUES ( 2, 'Users');
+INSERT INTO acl_controllers(id, controller) VALUES ( 3, 'Uf');
+INSERT INTO acl_controllers(id, controller) VALUES ( 4, 'Cidade');
+INSERT INTO acl_controllers(id, controller) VALUES ( 5, 'ClasseProduto');
+INSERT INTO acl_controllers(id, controller) VALUES ( 6, 'Unidade');
+INSERT INTO acl_controllers(id, controller) VALUES ( 7, 'Produto');
+INSERT INTO acl_controllers(id, controller) VALUES ( 8, 'Pessoa');
+INSERT INTO acl_controllers(id, controller) VALUES ( 9, 'Local');
+INSERT INTO acl_controllers(id, controller) VALUES ( 10, 'PrecoVenda');
+INSERT INTO acl_controllers(id, controller) VALUES ( 11, 'Venda');
+INSERT INTO acl_controllers(id, controller) VALUES ( 12, 'Sisdiesel');
+INSERT INTO acl_controllers(id, controller) VALUES ( 13, 'Banco');
+INSERT INTO acl_controllers(id, controller) VALUES ( 14, 'TipoContaCorrente');
+INSERT INTO acl_controllers(id, controller) VALUES ( 15, 'Extrato');
+INSERT INTO acl_controllers(id, controller) VALUES ( 16, 'TipoExtrato');
+INSERT INTO acl_controllers(id, controller) VALUES ( 17, 'ContaCorrente');
+INSERT INTO acl_controllers(id, controller) VALUES ( 18, 'Bomba');
+INSERT INTO acl_controllers(id, controller) VALUES ( 19, 'AfericaoBomba');
+INSERT INTO acl_controllers(id, controller) VALUES ( 20, 'ClasseFinanceira');
+INSERT INTO acl_controllers(id, controller) VALUES ( 21, 'TalaoCheque');
+INSERT INTO acl_controllers(id, controller) VALUES ( 22, 'Cheque');
+INSERT INTO acl_controllers(id, controller) VALUES ( 23, 'Compra');
+INSERT INTO acl_controllers(id, controller) VALUES ( 24, 'TipoLiquidacao');
+INSERT INTO acl_controllers(id, controller) VALUES ( 25, 'Obrigacao');
+INSERT INTO acl_controllers(id, controller) VALUES ( 26, 'SaldoEstoque');
+INSERT INTO acl_controllers(id, controller) VALUES ( 27, 'MovFinanceira');
+INSERT INTO acl_controllers(id, controller) VALUES ( 28, 'AjusteEstoque');
+INSERT INTO acl_controllers(id, controller) VALUES ( 29, 'PrecoCompra');
+INSERT INTO acl_controllers(id, controller) VALUES ( 30, 'ContasAReceber');
+INSERT INTO acl_controllers(id, controller) VALUES ( 31, 'TransferenciaEstoque');
+
+
+--
+-- Actions
+--
+INSERT INTO acl_actions(id, action) VALUES (  1, 'index');
+INSERT INTO acl_actions(id, action) VALUES (  2, 'view');
+INSERT INTO acl_actions(id, action) VALUES (  3, 'add');
+INSERT INTO acl_actions(id, action) VALUES (  4, 'edit');
+INSERT INTO acl_actions(id, action) VALUES (  5, 'delete');
+INSERT INTO acl_actions(id, action) VALUES (  6, 'display');
+INSERT INTO acl_actions(id, action) VALUES (  7, 'login');
+INSERT INTO acl_actions(id, action) VALUES (  8, 'logout');
+INSERT INTO acl_actions(id, action) VALUES (  9, 'accessDenied');
+INSERT INTO acl_actions(id, action) VALUES ( 10, 'ajaxBuscarCidade');
+INSERT INTO acl_actions(id, action) VALUES ( 11, 'ajaxBuscarProduto');
+INSERT INTO acl_actions(id, action) VALUES ( 12, 'ajaxBuscarPrecoProduto');
+INSERT INTO acl_actions(id, action) VALUES ( 13, 'ajaxHabilitacaoDetalhe');
+INSERT INTO acl_actions(id, action) VALUES ( 14, 'upload');
+INSERT INTO acl_actions(id, action) VALUES ( 15, 'resumoUpload');
+INSERT INTO acl_actions(id, action) VALUES ( 16, 'ajaxBuscarPessoa');
+INSERT INTO acl_actions(id, action) VALUES ( 17, 'adicionarItem');
+INSERT INTO acl_actions(id, action) VALUES ( 18, 'removerItem');
+INSERT INTO acl_actions(id, action) VALUES ( 19, 'editarItem');
+INSERT INTO acl_actions(id, action) VALUES ( 20, 'confirmar');
+INSERT INTO acl_actions(id, action) VALUES ( 21, 'liberar');
+INSERT INTO acl_actions(id, action) VALUES ( 22, 'ajaxBuscarTipoContaCorrente');
+INSERT INTO acl_actions(id, action) VALUES ( 23, 'ajaxBuscarChequesNaoUsados');
+INSERT INTO acl_actions(id, action) VALUES ( 24, 'ajaxBuscarSaldosPessoa');
+INSERT INTO acl_actions(id, action) VALUES ( 25, 'ajaxBuscarSaldosProduto');
+INSERT INTO acl_actions(id, action) VALUES ( 26, 'recepcaoItem');
+INSERT INTO acl_actions(id, action) VALUES ( 27, 'entregaItem');
+INSERT INTO acl_actions(id, action) VALUES ( 28, 'receberItem');
+INSERT INTO acl_actions(id, action) VALUES ( 29, 'entregarItem');
+INSERT INTO acl_actions(id, action) VALUES ( 30, 'adicionarItemAlteracaoValor');
+INSERT INTO acl_actions(id, action) VALUES ( 31, 'editarItemAlteracaoValor');
+INSERT INTO acl_actions(id, action) VALUES ( 32, 'adicionarPagamentoObrigacao');
+INSERT INTO acl_actions(id, action) VALUES ( 33, 'editarPagamentoObrigacao');
+INSERT INTO acl_actions(id, action) VALUES ( 34, 'ajaxBuscarTipoLiquidacao');
+INSERT INTO acl_actions(id, action) VALUES ( 35, 'removerPagamentoObrigacao');
+INSERT INTO acl_actions(id, action) VALUES ( 36, 'ajaxBuscarChequesComSaldo');
+INSERT INTO acl_actions(id, action) VALUES ( 37, 'editarItemAEntregar');
+INSERT INTO acl_actions(id, action) VALUES ( 38, 'deletarItemAEntregar');
+INSERT INTO acl_actions(id, action) VALUES ( 39, 'editarItemAReceber');
+INSERT INTO acl_actions(id, action) VALUES ( 40, 'deletarItemAReceber');
+INSERT INTO acl_actions(id, action) VALUES ( 41, 'ajaxBuscarPrecoCompra');
+INSERT INTO acl_actions(id, action) VALUES ( 42, 'conciliar');
+INSERT INTO acl_actions(id, action) VALUES ( 43, 'adicionarRecebimentoObrigacao');
+INSERT INTO acl_actions(id, action) VALUES ( 44, 'editarRecebimentoObrigacao');
+INSERT INTO acl_actions(id, action) VALUES ( 45, 'saldoPagarReceber');
+INSERT INTO acl_actions(id, action) VALUES ( 46, 'removerRecebimentoObrigacao');
+
+--
+-- Resources
+--
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  1, 1, 6); -- Pages/display
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  2, 2, 1); -- Users/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  3, 2, 2); -- Users/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  4, 2, 3); -- Users/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  5, 2, 4); -- Users/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  6, 2, 5); -- Users/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  7, 2, 7); -- Users/login
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  8, 2, 8); -- Users/logout
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES (  9, 2, 9); -- Users/accessDenied
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 10, 3, 1); -- Uf/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 11, 3, 2); -- Uf/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 12, 3, 3); -- Uf/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 13, 3, 4); -- Uf/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 14, 3, 5); -- Uf/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 15, 4, 1); -- Cidade/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 16, 4, 2); -- Cidade/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 17, 4, 3); -- Cidade/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 18, 4, 4); -- Cidade/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 19, 4, 5); -- Cidade/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 20, 5, 1); -- ClasseProduto/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 21, 5, 2); -- ClasseProduto/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 22, 5, 3); -- ClasseProduto/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 23, 5, 4); -- ClasseProduto/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 24, 5, 5); -- ClasseProduto/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 25, 6, 1); -- Unidade/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 26, 6, 2); -- Unidade/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 27, 6, 3); -- Unidade/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 28, 6, 4); -- Unidade/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 29, 6, 5); -- Unidade/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 30, 7, 1); -- Produto/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 31, 7, 2); -- Produto/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 32, 7, 3); -- Produto/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 33, 7, 4); -- Produto/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 34, 7, 5); -- Produto/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 35, 8, 1); -- Pessoa/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 36, 8, 2); -- Pessoa/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 37, 8, 3); -- Pessoa/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 38, 8, 4); -- Pessoa/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 39, 8, 5); -- Pessoa/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 40, 9, 1); -- Local/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 41, 9, 2); -- Local/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 42, 9, 3); -- Local/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 43, 9, 4); -- Local/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 44, 9, 5); -- Local/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 45, 10, 1); -- PrecoVenda/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 46, 10, 2); -- PrecoVenda/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 47, 10, 3); -- PrecoVenda/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 48, 10, 4); -- PrecoVenda/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 49, 10, 5); -- PrecoVenda/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 50, 11, 1); -- Venda/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 51, 11, 2); -- Venda/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 52, 11, 3); -- Venda/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 53, 11, 4); -- Venda/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 54, 11, 5); -- Venda/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 55, 13, 1); -- Banco/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 56, 13, 2); -- Banco/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 57, 13, 3); -- Banco/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 58, 13, 4); -- Banco/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 59, 13, 5); -- Banco/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 60, 14, 1); -- TipoContaCorrente/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 61, 14, 2); -- TipoContaCorrente/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 62, 14, 3); -- TipoContaCorrente/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 63, 14, 4); -- TipoContaCorrente/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 64, 14, 5); -- TipoContaCorrente/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 65, 15, 1); -- Extrato/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 66, 15, 2); -- Extrato/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 67, 15, 3); -- Extrato/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 68, 15, 4); -- Extrato/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 69, 15, 5); -- Extrato/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 70, 15, 14); -- Extrato/upload
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 71, 15, 15); -- Extrato/resumoUpload
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 72, 16, 1); -- TipoExtrato/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 73, 16, 2); -- TipoExtrato/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 74, 16, 3); -- TipoExtrato/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 75, 16, 4); -- TipoExtrato/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 76, 16, 5); -- TipoExtrato/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 77, 17, 1); -- ContaCorrente/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 78, 17, 2); -- ContaCorrente/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 79, 17, 3); -- ContaCorrente/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 80, 17, 4); -- ContaCorrente/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 81, 17, 5); -- ContaCorrente/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 82, 18, 1); -- Bomba/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 83, 18, 2); -- Bomba/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 84, 18, 3); -- Bomba/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 85, 18, 4); -- Bomba/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 86, 18, 5); -- Bomba/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 87, 19, 1); -- AfericaoBomba/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 88, 19, 2); -- AfericaoBomba/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 89, 19, 3); -- AfericaoBomba/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 90, 19, 4); -- AfericaoBomba/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 91, 19, 5); -- AfericaoBomba/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 92, 20, 1); -- ClasseFinanceira/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 93, 20, 2); -- ClasseFinanceira/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 94, 20, 3); -- ClasseFinanceira/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 95, 20, 4); -- ClasseFinanceira/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 96, 20, 5); -- ClasseFinanceira/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 97, 11, 17); -- Venda/adicionarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 98, 11, 18); -- Venda/removerItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 99, 11, 19); -- Venda/editarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 100, 11, 20); -- Venda/confirmar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 101, 11, 21); -- Venda/liberar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 102, 21, 1); -- TalaoCheque/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 103, 21, 2); -- TalaoCheque/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 104, 21, 3); -- TalaoCheque/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 105, 21, 4); -- TalaoCheque/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 106, 21, 5); -- TalaoCheque/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 107, 22, 1); -- Cheque/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 108, 22, 2); -- Cheque/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 109, 22, 3); -- Cheque/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 110, 22, 4); -- Cheque/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 111, 22, 5); -- Cheque/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 112, 23, 1); -- Compra/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 113, 23, 2); -- Compra/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 114, 23, 3); -- Compra/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 115, 23, 4); -- Compra/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 116, 23, 5); -- Compra/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 117, 23, 17); -- Compra/adicionarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 118, 23, 18); -- Compra/removerItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 119, 23, 19); -- Compra/editarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 120, 23, 20); -- Compra/confirmar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 121, 23, 21); -- Compra/liberar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 122, 24, 1); -- TipoLiquidacao/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 123, 24, 2); -- TipoLiquidacao/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 124, 24, 3); -- TipoLiquidacao/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 125, 24, 4); -- TipoLiquidacao/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 126, 24, 5); -- TipoLiquidacao/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 127, 25, 1); -- Obrigacao/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 128, 25, 2); -- Obrigacao/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 129, 25, 3); -- Obrigacao/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 130, 25, 4); -- Obrigacao/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 131, 25, 5); -- Obrigacao/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 132, 25, 17); -- Obrigacao/adicionarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 133, 25, 18); -- Obrigacao/removerItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 134, 25, 19); -- Obrigacao/editarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 135, 26, 1); -- SaldoEstoque/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 136, 27, 1); -- MovFinanceira/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 137, 27, 2); -- MovFinanceira/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 138, 27, 3); -- MovFinanceira/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 139, 27, 4); -- MovFinanceira/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 140, 27, 5); -- MovFinanceira/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 141, 26, 26); -- SaldoEstoque/recepcaoItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 142, 26, 27); -- SaldoEstoque/entregaItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 143, 26, 28); -- SaldoEstoque/receberItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 144, 26, 29); -- SaldoEstoque/entregarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 145, 25, 30); -- Obrigacao/adicionarItemAlteracaoValor
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 146, 25, 31); -- Obrigacao/editarItemAlteracaoValor
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 147, 27, 32); -- MovFinanceira/adicionarPagamentoObrigacao
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 148, 27, 33); -- MovFinanceira/editarPagamentoObrigacao
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 149, 27, 35); -- MovFinanceira/removerPagamentoObrigacao
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 150, 28, 1); -- AjusteEstoque/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 151, 28, 2); -- AjusteEstoque/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 152, 28, 3); -- AjusteEstoque/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 153, 28, 4); -- AjusteEstoque/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 154, 28, 5); -- AjusteEstoque/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 155, 26, 37); -- SaldoEstoque/editarItemAEntregar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 156, 26, 38); -- SaldoEstoque/deletarItemAEntregar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 157, 26, 39); -- SaldoEstoque/editarItemAReceber
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 158, 26, 40); -- SaldoEstoque/deletarItemAReceber
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 159, 29, 1); -- PrecoCompra/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 160, 29, 2); -- PrecoCompra/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 161, 29, 3); -- PrecoCompra/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 162, 29, 4); -- PrecoCompra/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 163, 29, 5); -- PrecoCompra/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 164, 27, 20); -- MovFinanceira/confirmar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 165, 15, 42); -- Extrato/conciliar
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 166, 30, 1); -- ContasAReceber/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 167, 30, 2); -- ContasAReceber/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 168, 30, 3); -- ContasAReceber/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 169, 30, 4); -- ContasAReceber/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 170, 30, 5); -- ContasAReceber/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 171, 30, 17); -- ContasAReceber/adicionarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 172, 30, 18); -- ContasAReceber/removerItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 173, 30, 19); -- ContasAReceber/editarItem
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 174, 30, 30); -- ContasAReceber/adicionarItemAlteracaoValor
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 175, 30, 31); -- ContasAReceber/editarItemAlteracaoValor
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 176, 27, 43); -- MovFinanceira/adicionarRecebimentoObrigacao
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 177, 27, 44); -- MovFinanceira/editarRecebimentoObrigacao
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 178, 27, 45); -- MovFinanceira/saldoPagarReceber
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 179, 27, 46); -- MovFinanceira/removerRecebimentoObrigacao
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 180, 31, 1); -- TransferenciaEstoque/index
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 181, 31, 2); -- TransferenciaEstoque/view
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 182, 31, 3); -- TransferenciaEstoque/add
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 183, 31, 4); -- TransferenciaEstoque/edit
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 184, 31, 5); -- TransferenciaEstoque/delete
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 185, 31, 20); -- TransferenciaEstoque/confirmar
+
+INSERT INTO acl_controllers(id, controller) VALUES ( 31, 'TransferenciaEstoque');
+-- AjaxResources
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1000, 4, 10); -- Cidade/ajaxBuscarCidade
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1001, 7, 11); -- Produto/ajaxBuscarProduto
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1002, 10, 12); -- PrecoVenda/ajaxBuscarPrecoProduto
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1003, 12, 13); -- Sisdiesel/ajaxHabilitacaoDetalhe
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1004, 8, 16); -- Pessoa/ajaxBuscarPessoa
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1005, 14, 22); -- TipoContaCorrente/ajaxBuscarTipoContaCorrente
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1006, 22, 23); -- Cheque/ajaxBuscarChequesNaoUsados -- n utilizado ainda
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1007, 8, 24); -- Pessoa/ajaxBuscarSaldosPessoa
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1008, 7, 25); -- Produto/ajaxBuscarSaldosProduto
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1009, 24, 34); -- TipoLiquidacao/ajaxBuscarTipoLiquidacao
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1010, 22, 36); -- Cheque/ajaxBuscarChequesComSaldo
+INSERT INTO acl_resources(id, controller_id, action_id) VALUES ( 1011, 29, 41); -- PrecoCompra/ajaxBuscarPrecoCompra
+
+
+
+
+--
+-- Privileges
+--
+
+--
+-- administrador
+--
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  1, 1, true); -- Pages/display
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  2, 1, true); -- Users/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  3, 1, true); -- Users/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  4, 1, true); -- Users/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  5, 1, true); -- Users/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  6, 1, true); -- Users/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  7, 1, true); -- Users/login
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  8, 1, true); -- Users/logout
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  9, 1, true); -- Users/accessDenied
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 10, 1, true); -- Uf/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 11, 1, true); -- Uf/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 12, 1, true); -- Uf/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 13, 1, true); -- Uf/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 14, 1, true); -- Uf/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 15, 1, true); -- Cidade/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 16, 1, true); -- Cidade/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 17, 1, true); -- Cidade/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 18, 1, true); -- Cidade/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 19, 1, true); -- Cidade/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 20, 1, true); -- ClasseProduto/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 21, 1, true); -- ClasseProduto/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 22, 1, true); -- ClasseProduto/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 23, 1, true); -- ClasseProduto/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 24, 1, true); -- ClasseProduto/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 25, 1, true); -- Unidade/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 26, 1, true); -- Unidade/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 27, 1, true); -- Unidade/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 28, 1, true); -- Unidade/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 29, 1, true); -- Unidade/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 30, 1, true); -- Produto/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 31, 1, true); -- Produto/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 32, 1, true); -- Produto/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 33, 1, true); -- Produto/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 34, 1, true); -- Produto/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 35, 1, true); -- Pessoa/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 36, 1, true); -- Pessoa/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 37, 1, true); -- Pessoa/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 38, 1, true); -- Pessoa/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 39, 1, true); -- Pessoa/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 40, 1, true); -- Local/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 41, 1, true); -- Local/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 42, 1, true); -- Local/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 43, 1, true); -- Local/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 44, 1, true); -- Local/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 45, 1, true); -- PrecoVenda/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 46, 1, true); -- PrecoVenda/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 47, 1, true); -- PrecoVenda/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 48, 1, true); -- PrecoVenda/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 49, 1, true); -- PrecoVenda/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 50, 1, true); -- Venda/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 51, 1, true); -- Venda/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 52, 1, true); -- Venda/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 53, 1, true); -- Venda/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 54, 1, true); -- Venda/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 55, 1, true); -- Banco/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 56, 1, true); -- Banco/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 57, 1, true); -- Banco/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 58, 1, true); -- Banco/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 59, 1, true); -- Banco/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 60, 1, true); -- TipoContaCorrente/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 61, 1, true); -- TipoContaCorrente/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 62, 1, true); -- TipoContaCorrente/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 63, 1, true); -- TipoContaCorrente/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 64, 1, true); -- TipoContaCorrente/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 65, 1, true); -- Extrato/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 66, 1, true); -- Extrato/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 67, 1, true); -- Extrato/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 68, 1, true); -- Extrato/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 69, 1, true); -- Extrato/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 70, 1, true); -- Extrato/upload
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 71, 1, true); -- Extrato/resumoUpload
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 72, 1, true); -- TipoExtrato/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 73, 1, true); -- TipoExtrato/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 74, 1, true); -- TipoExtrato/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 75, 1, true); -- TipoExtrato/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 76, 1, true); -- TipoExtrato/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 77, 1, true); -- ContaCorrente/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 78, 1, true); -- ContaCorrente/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 79, 1, true); -- ContaCorrente/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 80, 1, true); -- ContaCorrente/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 81, 1, true); -- ContaCorrente/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 82, 1, true); -- Bomba/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 83, 1, true); -- Bomba/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 84, 1, true); -- Bomba/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 85, 1, true); -- Bomba/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 86, 1, true); -- Bomba/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 87, 1, true); -- AfericaoBomba/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 88, 1, true); -- AfericaoBomba/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 89, 1, true); -- AfericaoBomba/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 90, 1, true); -- AfericaoBomba/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 91, 1, true); -- AfericaoBomba/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 92, 1, true); -- ClasseFinanceira/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 93, 1, true); -- ClasseFinanceira/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 94, 1, true); -- ClasseFinanceira/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 95, 1, true); -- ClasseFinanceira/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 96, 1, true); -- ClasseFinanceira/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 97, 1, true); -- Venda/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 98, 1, true); -- Venda/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 99, 1, true); -- Venda/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 100, 1, true); -- Venda/confirmar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 101, 1, true); -- Venda/liberar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 102, 1, true); -- TalaoCheque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 103, 1, true); -- TalaoCheque/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 104, 1, true); -- TalaoCheque/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 105, 1, true); -- TalaoCheque/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 106, 1, true); -- TalaoCheque/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 107, 1, true); -- Cheque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 108, 1, true); -- Cheque/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 109, 1, true); -- Cheque/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 110, 1, true); -- Cheque/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 111, 1, true); -- Cheque/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 112, 1, true); -- Compra/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 113, 1, true); -- Compra/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 114, 1, true); -- Compra/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 115, 1, true); -- Compra/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 116, 1, true); -- Compra/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 117, 1, true); -- Compra/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 118, 1, true); -- Compra/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 119, 1, true); -- Compra/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 120, 1, true); -- Compra/confirmar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 121, 1, true); -- Compra/liberar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 122, 1, true); -- TipoLiquidacao/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 123, 1, true); -- TipoLiquidacao/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 124, 1, true); -- TipoLiquidacao/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 125, 1, true); -- TipoLiquidacao/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 126, 1, true); -- TipoLiquidacao/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 127, 1, true); -- Obrigacao/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 128, 1, true); -- Obrigacao/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 129, 1, true); -- Obrigacao/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 130, 1, true); -- Obrigacao/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 131, 1, true); -- Obrigacao/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 132, 1, true); -- Obrigacao/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 133, 1, true); -- Obrigacao/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 134, 1, true); -- Obrigacao/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 135, 1, true); -- SaldoEstoque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 136, 1, true); -- MovFinanceira/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 137, 1, true); -- MovFinanceira/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 138, 1, true); -- MovFinanceira/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 139, 1, true); -- MovFinanceira/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 140, 1, true); -- MovFinanceira/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 141, 1, true); -- SaldoEstoque/recepcaoItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 142, 1, true); -- SaldoEstoque/entregaItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 143, 1, true); -- SaldoEstoque/receberItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 144, 1, true); -- SaldoEstoque/entregarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 145, 1, true); -- Obrigacao/adicionarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 146, 1, true); -- Obrigacao/editarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 147, 1, true); -- MovFinanceira/adicionarPagamentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 148, 1, true); -- MovFinanceira/editarPagamentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 149, 1, true); -- MovFinanceira/removerPagamentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 150, 1, true); -- AjusteEstoque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 151, 1, true); -- AjusteEstoque/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 152, 1, true); -- AjusteEstoque/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 153, 1, true); -- AjusteEstoque/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 154, 1, true); -- AjusteEstoque/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 155, 1, true); -- SaldoEstoque/editarItemAEntregar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 156, 1, true); -- SaldoEstoque/deletarItemAEntregar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 157, 1, true); -- SaldoEstoque/editarItemAReceber
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 158, 1, true); -- SaldoEstoque/deletarItemAReceber
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 159, 1, true); -- PrecoCompra/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 160, 1, true); -- PrecoCompra/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 161, 1, true); -- PrecoCompra/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 162, 1, true); -- PrecoCompra/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 163, 1, true); -- PrecoCompra/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 164, 1, true); -- MovFinanceira/confirmar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 165, 1, true); -- Extrato/conciliar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 166, 1, true); -- ContasAReceber/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 167, 1, true); -- ContasAReceber/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 168, 1, true); -- ContasAReceber/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 169, 1, true); -- ContasAReceber/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 170, 1, true); -- ContasAReceber/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 171, 1, true); -- ContasAReceber/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 172, 1, true); -- ContasAReceber/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 173, 1, true); -- ContasAReceber/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 174, 1, true); -- ContasAReceber/adicionarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 175, 1, true); -- ContasAReceber/editarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 176, 1, true); -- MovFinanceira/adicionarRecebimentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 177, 1, true); -- MovFinanceira/editarRecebimentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 178, 1, true); -- MovFinanceira/saldoPagarReceber
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 179, 1, true); -- MovFinanceira/removerRecebimentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 180, 1, true); -- TransferenciaEstoque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 181, 1, true); -- TransferenciaEstoque/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 182, 1, true); -- TransferenciaEstoque/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 183, 1, true); -- TransferenciaEstoque/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 184, 1, true); -- TransferenciaEstoque/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 185, 1, true); -- TransferenciaEstoque/confirmar
+--AjaxPrivileges
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1000, 1, true); -- Cidade/ajaxBuscarCidade
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1001, 1, true); -- Produto/ajaxBuscarProduto
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1002, 1, true); -- PrecoVenda/ajaxBuscarPrecoProduto
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1003, 1, true); -- Sisdiesel/ajaxHabilitacaoDetalhe
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1004, 1, true); -- Pessoa/ajaxBuscarPessoa
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1005, 1, true); -- TipoContaCorrente/ajaxBuscarTipoContaCorrente
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1006, 1, true); -- Cheque/ajaxBuscarChequesNaoUsados
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1007, 1, true); -- Pessoa/ajaxBuscarSaldosPessoa
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1008, 1, true); -- Produto/ajaxBuscarSaldosProduto
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1009, 1, true); -- TipoLiquidacao/ajaxBuscarTipoLiquidacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1010, 1, true); -- Cheque/ajaxBuscarChequesComSaldo
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1011, 1, true); -- PrecoCompra/ajaxBuscarPrecoCompra
+
+--
+-- users
+--
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  1, 2, true); -- Pages/display
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  2, 2, true); -- Users/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  3, 2, true); -- Users/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  4, 2, true); -- Users/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  5, 2, true); -- Users/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  6, 2, true); -- Users/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  7, 2, true); -- Users/login
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  8, 2, true); -- Users/logout
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES (  9, 2, true); -- Users/accessDenied
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 10, 2, true); -- Uf/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 11, 2, true); -- Uf/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 12, 2, true); -- Uf/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 13, 2, true); -- Uf/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 14, 2, true); -- Uf/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 15, 2, true); -- Cidade/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 16, 2, true); -- Cidade/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 17, 2, true); -- Cidade/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 18, 2, true); -- Cidade/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 19, 2, true); -- Cidade/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 20, 2, true); -- ClasseProduto/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 21, 2, true); -- ClasseProduto/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 22, 2, true); -- ClasseProduto/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 23, 2, true); -- ClasseProduto/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 24, 2, true); -- ClasseProduto/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 25, 2, true); -- Unidade/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 26, 2, true); -- Unidade/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 27, 2, true); -- Unidade/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 28, 2, true); -- Unidade/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 29, 2, true); -- Unidade/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 30, 2, true); -- Produto/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 31, 2, true); -- Produto/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 32, 2, true); -- Produto/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 33, 2, true); -- Produto/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 34, 2, true); -- Produto/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 35, 2, true); -- Pessoa/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 36, 2, true); -- Pessoa/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 37, 2, true); -- Pessoa/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 38, 2, true); -- Pessoa/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 39, 2, true); -- Pessoa/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 40, 2, true); -- Local/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 41, 2, true); -- Local/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 42, 2, true); -- Local/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 43, 2, true); -- Local/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 44, 2, true); -- Local/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 45, 2, true); -- PrecoVenda/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 46, 2, true); -- PrecoVenda/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 47, 2, true); -- PrecoVenda/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 48, 2, true); -- PrecoVenda/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 49, 2, true); -- PrecoVenda/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 50, 2, true); -- Venda/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 51, 2, true); -- Venda/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 52, 2, true); -- Venda/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 53, 2, true); -- Venda/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 54, 2, true); -- Venda/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 55, 2, true); -- Banco/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 56, 2, true); -- Banco/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 57, 2, true); -- Banco/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 58, 2, true); -- Banco/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 59, 2, true); -- Banco/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 60, 2, true); -- TipoContaCorrente/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 61, 2, true); -- TipoContaCorrente/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 62, 2, true); -- TipoContaCorrente/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 63, 2, true); -- TipoContaCorrente/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 64, 2, true); -- TipoContaCorrente/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 65, 2, true); -- Extrato/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 66, 2, true); -- Extrato/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 67, 2, true); -- Extrato/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 68, 2, true); -- Extrato/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 69, 2, true); -- Extrato/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 70, 2, true); -- Extrato/upload
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 71, 2, true); -- Extrato/resumoUpload
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 72, 2, true); -- TipoExtrato/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 73, 2, true); -- TipoExtrato/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 74, 2, true); -- TipoExtrato/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 75, 2, true); -- TipoExtrato/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 76, 2, true); -- TipoExtrato/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 77, 2, true); -- ContaCorrente/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 78, 2, true); -- ContaCorrente/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 79, 2, true); -- ContaCorrente/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 80, 2, true); -- ContaCorrente/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 81, 2, true); -- ContaCorrente/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 82, 2, true); -- Bomba/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 83, 2, true); -- Bomba/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 84, 2, true); -- Bomba/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 85, 2, true); -- Bomba/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 86, 2, true); -- Bomba/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 87, 2, true); -- AfericaoBomba/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 88, 2, true); -- AfericaoBomba/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 89, 2, true); -- AfericaoBomba/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 90, 2, true); -- AfericaoBomba/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 91, 2, true); -- AfericaoBomba/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 92, 2, true); -- ClasseFinanceira/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 93, 2, true); -- ClasseFinanceira/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 94, 2, true); -- ClasseFinanceira/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 95, 2, true); -- ClasseFinanceira/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 96, 2, true); -- ClasseFinanceira/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 97, 2, true); -- Venda/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 98, 2, true); -- Venda/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 99, 2, true); -- Venda/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 100, 2, true); -- Venda/confirmar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 101, 2, true); -- Venda/liberar
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 102, 2, true); -- TalaoCheque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 103, 2, true); -- TalaoCheque/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 104, 2, true); -- TalaoCheque/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 105, 2, true); -- TalaoCheque/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 106, 2, true); -- TalaoCheque/delete
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 107, 2, true); -- Cheque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 108, 2, true); -- Cheque/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 109, 2, true); -- Cheque/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 110, 2, true); -- Cheque/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 111, 2, true); -- Cheque/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 112, 2, true); -- Compra/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 113, 2, true); -- Compra/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 114, 2, true); -- Compra/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 115, 2, true); -- Compra/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 116, 2, true); -- Compra/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 117, 2, true); -- Compra/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 118, 2, true); -- Compra/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 119, 2, true); -- Compra/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 120, 2, true); -- Compra/confirmar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 121, 2, true); -- Compra/liberar
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 122, 2, true); -- TipoLiquidacao/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 123, 2, true); -- TipoLiquidacao/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 124, 2, true); -- TipoLiquidacao/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 125, 2, true); -- TipoLiquidacao/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 126, 2, true); -- TipoLiquidacao/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 127, 2, true); -- Obrigacao/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 128, 2, true); -- Obrigacao/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 129, 2, true); -- Obrigacao/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 130, 2, true); -- Obrigacao/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 131, 2, true); -- Obrigacao/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 132, 2, true); -- Obrigacao/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 133, 2, true); -- Obrigacao/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 134, 2, true); -- Obrigacao/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 135, 2, true); -- SaldoEstoque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 136, 2, true); -- MovFinanceira/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 137, 2, true); -- MovFinanceira/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 138, 2, true); -- MovFinanceira/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 139, 2, true); -- MovFinanceira/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 140, 2, true); -- MovFinanceira/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 141, 2, true); -- SaldoEstoque/recepcaoItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 142, 2, true); -- SaldoEstoque/entregaItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 143, 2, true); -- SaldoEstoque/receberItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 144, 2, true); -- SaldoEstoque/entregarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 145, 2, true); -- Obrigacao/adicionarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 146, 2, true); -- Obrigacao/editarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 147, 2, true); -- MovFinanceira/adicionarPagamentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 148, 2, true); -- MovFinanceira/editarPagamentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 149, 2, true); -- MovFinanceira/removerPagamentoObrigacao
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 150, 2, true); -- AjusteEstoque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 151, 2, true); -- AjusteEstoque/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 152, 2, true); -- AjusteEstoque/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 153, 2, true); -- AjusteEstoque/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 154, 2, true); -- AjusteEstoque/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 155, 2, true); -- SaldoEstoque/editarItemAEntregar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 156, 2, true); -- SaldoEstoque/deletarItemAEntregar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 157, 2, true); -- SaldoEstoque/editarItemAReceber
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 158, 2, true); -- SaldoEstoque/deletarItemAReceber
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 159, 2, true); -- PrecoCompra/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 160, 2, true); -- PrecoCompra/view
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 161, 2, true); -- PrecoCompra/add
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 162, 2, true); -- PrecoCompra/edit
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 163, 2, true); -- PrecoCompra/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 164, 2, true); -- MovFinanceira/confirmar
+-- INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 165, 2, true); -- Extrato/conciliar
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 166, 2, true); -- ContasAReceber/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 167, 2, true); -- ContasAReceber/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 168, 2, true); -- ContasAReceber/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 169, 2, true); -- ContasAReceber/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 170, 2, true); -- ContasAReceber/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 171, 2, true); -- ContasAReceber/adicionarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 172, 2, true); -- ContasAReceber/removerItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 173, 2, true); -- ContasAReceber/editarItem
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 174, 2, true); -- ContasAReceber/adicionarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 175, 2, true); -- ContasAReceber/editarItemAlteracaoValor
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 176, 2, true); -- MovFinanceira/adicionarRecebimentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 177, 2, true); -- MovFinanceira/editarRecebimentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 178, 2, true); -- MovFinanceira/saldoPagarReceber
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 179, 2, true); -- MovFinanceira/removerRecebimentoObrigacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 180, 2, true); -- TransferenciaEstoque/index
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 181, 2, true); -- TransferenciaEstoque/view
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 182, 2, true); -- TransferenciaEstoque/add
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 183, 2, true); -- TransferenciaEstoque/edit
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 184, 2, true); -- TransferenciaEstoque/delete
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 185, 2, true); -- TransferenciaEstoque/confirmar
+--AjaxPrivileges
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1000, 2, true); -- Cidade/ajaxBuscarCidade
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1001, 2, true); -- Produto/ajaxBuscarProduto
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1002, 2, true); -- PrecoVenda/ajaxBuscarPrecoProduto
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1003, 2, true); -- Sisdiesel/ajaxHabilitacaoDetalhe
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1004, 2, true); -- Pessoa/ajaxBuscarPessoa
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1005, 2, true); -- TipoContaCorrente/ajaxBuscarTipoContaCorrente
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1006, 2, true); -- Cheque/ajaxBuscarChequesNaoUsados
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1007, 2, true); -- Pessoa/ajaxBuscarSaldosPessoa
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1008, 2, true); -- Produto/ajaxBuscarSaldosProduto
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1009, 2, true); -- TipoLiquidacao/ajaxBuscarTipoLiquidacao
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1010, 2, true); -- Cheque/ajaxBuscarChequesComSaldo
+INSERT INTO acl_privileges(resource_id, role_id, allow) VALUES ( 1011, 2, true); -- PrecoCompra/ajaxBuscarPrecoCompra
+

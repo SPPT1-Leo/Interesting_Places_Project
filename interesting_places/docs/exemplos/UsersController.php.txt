@@ -1,0 +1,361 @@
+<?php
+namespace App\Controller;
+
+use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+
+/**
+ * Users Controller
+ *
+ * @property \App\Model\Table\UsersTable $Users
+ */
+class UsersController extends AppController
+{
+
+    public function initialize() {
+        parent::initialize();
+        $this->loadComponent('Relatorio');
+    }
+
+    /**
+     * Index method
+     *
+     * @return void
+     */
+    public function index()
+    {
+
+        $this->UsersLocalDestino    = TableRegistry::get('UsersLocalDestino');
+
+        $this->paginate = [
+            'contain' => ['AclRoles', 'Pessoa', 'Local', 'Local.Cidade', 'Local.Cidade.Uf', 'Local.PessoaResponsavel']
+        ];
+
+        $cond = array();
+        if(isset($this->request->query['search'])) {
+            $search = $this->request->query['search'];
+            $search = $this->Relatorio->strToNoAccent($search);
+            $cond['unaccent_string(Users.login) ILIKE '] = '%'.$search.'%';
+        }
+
+        $users = $this->Users->find('all', array(
+            'contain' => ['AclRoles', 'Pessoa', 'Local', 'Local.Cidade', 'Local.Cidade.Uf', 'Local.PessoaResponsavel'],
+            'conditions' => $cond,
+            'order' => array(
+                'Pessoa.nome' => 'asc',
+                'Users.login' => 'asc',
+            ),
+        ));        
+
+        $users_ = $this->paginate($users);
+        
+        $arrUsers = [];
+        foreach($users_ as $users) {
+            $usersArr = array();
+            $usersArr['id'] = $users->id;
+            $usersArr['role_id'] = $users->role_id;
+            $usersArr['role_nome'] = $users->acl_role->role;
+            $usersArr['login'] = $users->login;
+            $usersArr['pessoa_id'] = $users->pessoa_id;
+            $usersArr['pessoa_nome'] = $users->pessoa->nome;
+            $usersArr['locais'] = array();
+            $usersArr['locais_destino'] = array();
+
+            foreach($users->local as $users_local) {
+                $arrLocal = array();
+                $arrLocal['local_id'] = $users_local->id;
+                $arrLocal['local_nome'] = $users_local->nome;
+                $arrLocal['local_cidade_id'] = $users_local->cidade_id;
+                $arrLocal['local_cidade_nome'] = $users_local->cidade->nome;
+                $arrLocal['local_uf_id'] = $users_local->cidade->uf_id;
+                $arrLocal['local_uf_sigla'] = $users_local->cidade->uf->sigla;
+                $arrLocal['local_pessoa_id'] = $users_local->responsavel;
+                $arrLocal['local_pessoa_nome'] = $users_local->pessoa_responsavel->nome;
+                $arrLocal['local_faz_estoque'] = $users_local->faz_estoque;
+                
+                array_push($usersArr['locais'], $arrLocal);
+            }
+
+            $locaisDestino = $this->UsersLocalDestino->find('all', array(
+                'contain' => ['Local.Cidade.Uf', 'Local.PessoaResponsavel'],
+                'conditions' => array(
+                    'UsersLocalDestino.users_id = ' => $users->id,
+                ),
+                'order' => array(
+                    'Local.nome' => 'asc',
+                ),
+            ));
+
+            foreach($locaisDestino as $users_local) {
+
+                $arrLocal = array();
+                $arrLocal['local_id'] = $users_local->local_id;
+                $arrLocal['local_nome'] = $users_local->local->nome;
+                $arrLocal['local_cidade_id'] = $users_local->local->cidade_id;
+                $arrLocal['local_cidade_nome'] = $users_local->local->cidade->nome;
+                $arrLocal['local_uf_id'] = $users_local->local->cidade->uf_id;
+                $arrLocal['local_uf_sigla'] = $users_local->local->cidade->uf->sigla;
+                $arrLocal['local_pessoa_id'] = $users_local->local->responsavel;
+                $arrLocal['local_pessoa_nome'] = $users_local->local->pessoa_responsavel->nome;
+                $arrLocal['local_faz_estoque'] = $users_local->local->faz_estoque;
+                
+                array_push($usersArr['locais_destino'], $arrLocal);
+            }            
+
+            array_push($arrUsers, $usersArr);
+        }
+
+
+
+        $this->paginate['limit'] = 50;
+        $this->set('users', $arrUsers);
+        $this->set('_serialize', ['users']);
+        $this->set('title', 'Usuários');
+    }
+
+    /**
+     * View method
+     *
+     * @param string|null $id User id.
+     * @return void
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $this->UsersLocalDestino    = TableRegistry::get('UsersLocalDestino');
+        $this->UsersLocal    = TableRegistry::get('UsersLocal');
+        $user = $this->Users->get($id, [
+            'contain' => ['AclRoles', 'Pessoa']
+        ]);
+
+        $locais = $this->UsersLocal->find('all', array(
+            'contain' => ['Local.Cidade.Uf', 'Local.PessoaResponsavel'],
+            'conditions' => array(
+                'UsersLocal.users_id = ' => $id,
+            ),
+            'order' => array(
+                'Local.nome' => 'asc',
+            ),
+        ));
+
+        $locaisDestino = $this->UsersLocalDestino->find('all', array(
+            'conditions' => array(
+                'UsersLocalDestino.users_id = ' => $id, 
+            ),
+            'contain' => ['Local.Cidade.Uf', 'Local.PessoaResponsavel'],
+            'order' => array(
+                'Local.nome' => 'asc',
+            ),
+        ));
+
+        $this->set('locais', $locais);
+        $this->set('locais_destino', $locaisDestino);
+        $this->set('user', $user);
+        $this->set('_serialize', ['user']);
+        $this->set('title', 'Usuários');
+    }
+
+    /**
+     * Add method
+     *
+     * @return void Redirects on successful add, renders view otherwise.
+     */
+    public function add()
+    {
+        $this->UsersLocal           = TableRegistry::get('UsersLocal');
+        $this->UsersLocalDestino    = TableRegistry::get('UsersLocalDestino');
+        $user = $this->Users->newEntity();
+
+        $locais_dest_str = "";
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
+                if(isset($this->request->data['local_destino'])) {
+                    $arrLocais = $this->request->data['local_destino'];
+                    foreach($arrLocais as $loc) {
+                        $newLoc = $this->UsersLocalDestino->newEntity();
+                        
+                        $newLoc->users_id = $user->id;
+                        $newLoc->local_id = (int)$loc;
+
+                        $this->UsersLocalDestino->save($newLoc);
+
+                        if($locais_dest_str == "") {
+                            $locais_dest_str .= $loc->local_id;
+                        } else {
+                            $locais_dest_str .= ";".$loc->local_id;
+                        }
+                    }
+                }
+
+                $this->Flash->success(__('Usuário salvo com sucesso.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('Erro ao salvar o usuário. Tente novamente.'));
+            }
+        }
+        $aclRoles = $this->Users->AclRoles->find('list');
+        $pessoas = $this->Users->Pessoa->find('list');
+
+        $local = $this->Users->Local->find('list', array(
+            'contain' => ['Cidade', 'Cidade.Uf'],
+            'order' => ['Local.nome' => 'asc'],
+            'keyField' => 'id',
+            'valueField' => ['nome', 'cid', 'sig'], 
+        ))->select([
+            'id' => 'Local.id',
+            'nome' => 'Local.nome',
+            'cid' => 'Cidade.nome',
+            'sig' => 'Uf.sigla',
+        ]);
+
+        $this->set(compact('user', 'aclRoles', 'pessoas', 'local', 'locais_dest_str'));
+        $this->set('_serialize', ['user']);
+        $this->set('title', 'Usuários');
+    }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id User id.
+     * @return void Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $this->UsersLocalDestino    = TableRegistry::get('UsersLocalDestino');
+        $user = $this->Users->get($id, [
+            'contain' => ['Local']
+        ]);
+
+        $locais_destino = $this->UsersLocalDestino->find('all', array(
+            'conditions' => array(
+                'UsersLocalDestino.users_id = ' => $id,
+            ),
+        ));
+        $locais_dest_str = "";
+        foreach($locais_destino as $loc) {
+            if($locais_dest_str == "") {
+                $locais_dest_str .= $loc->local_id;
+            } else {
+                $locais_dest_str .= ";".$loc->local_id;
+            }
+        }
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
+
+                
+                foreach($locais_destino as $loc) {
+                    $this->UsersLocalDestino->delete($loc);
+                }
+                if(isset($this->request->data['local_destino'])) {
+                    $arrLocais = $this->request->data['local_destino'];
+                    foreach($arrLocais as $loc) {
+                        $newLoc = $this->UsersLocalDestino->newEntity();
+                        
+                        $newLoc->users_id = $id;
+                        $newLoc->local_id = (int)$loc;
+
+                        $this->UsersLocalDestino->save($newLoc);
+                    }
+                }
+
+                $this->Flash->success(__('Usuário salvo com sucesso.'));
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('Erro ao salvar o usuário. Tente novamente.'));
+            }
+        }
+        $aclRoles = $this->Users->AclRoles->find('list');
+        $pessoas = $this->Users->Pessoa->find('list');
+        $local = $this->Users->Local->find('list', array(
+            'contain' => ['Cidade', 'Cidade.Uf'],
+            'order' => ['Local.nome' => 'asc'],
+            'keyField' => 'id',
+            'valueField' => ['nome', 'cid', 'sig'], 
+        ))->select([
+            'id' => 'Local.id',
+            'nome' => 'Local.nome',
+            'cid' => 'Cidade.nome',
+            'sig' => 'Uf.sigla',
+        ]);
+
+        $this->set(compact('user', 'aclRoles', 'pessoas', 'local', 'locais_dest_str'));
+        $this->set('_serialize', ['user']);
+        $this->set('title', 'Usuários');
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Network\Response|null Redirects to index.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->UsersLocal    = TableRegistry::get('UsersLocal');
+        $this->UsersLocalDestino    = TableRegistry::get('UsersLocalDestino');
+        
+        $this->request->allowMethod(['post', 'delete', 'get']);
+        $user = $this->Users->get($id);
+
+        $locais = $this->UsersLocal->find('all', array(
+            'conditions' => array(
+                'UsersLocal.users_id = ' => $id,
+            ),
+        ))->count();
+
+        $locais_destino = $this->UsersLocalDestino->find('all', array(
+            'conditions' => array(
+                'UsersLocalDestino.users_id = ' => $id,
+            ),
+        ))->count();
+        
+        try {
+            if($locais == 0 && $locais_destino == 0) {
+                if ($this->Users->delete($user)) {
+                    $this->Flash->success(__('Usuário foi excluído com sucesso.'));
+                } else {
+                    $this->Flash->error(__('Erro ao excluir o usuário. Tente novamente. '));
+                }    
+            } else {
+                $this->Flash->error(__('O usuário não pode ser excluído. Ainda existe Local vinculado ao usuário.'));
+            }
+        } catch(\Exception $e) {
+            $this->Flash->error(__('O usuário não pode ser excluído. Existe relacionamento com outros registros.'));
+        }            
+        return $this->redirect(['action' => 'index']);
+    }
+
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                
+                $this->Auth->setUser($user);
+                
+                return $this->redirect($this->Auth->redirectUrl('/'));
+                
+            } else {
+                $this->Flash->error('Usuário ou senha incorretos. Tente Novamente.');
+                return $this->redirect($this->Auth->redirectUrl('/users/login'));
+            }
+
+        }
+    }
+
+    public function logout()
+    {
+        $this->Flash->success('Sessão encerrada com sucesso.');
+        return $this->redirect($this->Auth->logout());
+    }
+
+    public function accessDenied() {
+        $this->set('title', 'Permissões');
+    }
+
+}
